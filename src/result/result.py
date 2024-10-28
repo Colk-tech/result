@@ -146,6 +146,12 @@ class Ok(Generic[T]):
         """
         return self._value
 
+    def unwrap_or_raise_itself(self) -> T:
+        """
+        Return the value.
+        """
+        return self._value
+
     def map(self, op: Callable[[T], U]) -> Ok[U]:
         """
         The contained result is `Ok`, so return `Ok` with original value mapped to
@@ -357,6 +363,17 @@ class Err(Generic[E]):
         The contained result is ``Err``, so raise the exception with the value.
         """
         raise e(self._value)
+
+    def unwrap_or_raise_itself(self) -> NoReturn:
+        """
+        The contained result is ``Err``, so raise the error itself.
+        """
+        if isinstance(self._value, BaseException):
+            raise self._value
+
+        raise TypeError(
+            f"Called `Result.unwrap_or_raise_itself()` on non-exception value: {self._value}"
+        )
 
     def map(self, op: object) -> Err[E]:
         """
