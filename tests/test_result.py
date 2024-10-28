@@ -158,6 +158,18 @@ def test_unwrap_or_raise() -> None:
     assert exc_info.value.args == ('nay',)
 
 
+def test_unwrap_or_raise_itself() -> None:
+    o = Ok('yay')
+    n = Err(RuntimeError('nay'))
+    assert o.unwrap_or_raise_itself() == 'yay'
+    with pytest.raises(RuntimeError) as exc_info:
+        n.unwrap_or_raise_itself()
+    assert exc_info.value.args == ('nay',)
+    ne = Err('nay')
+    with pytest.raises(UnwrapError):
+        ne.unwrap_or_raise_itself()
+
+
 def test_map() -> None:
     o = Ok('yay')
     n = Err('nay')
