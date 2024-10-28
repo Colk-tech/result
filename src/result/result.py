@@ -371,8 +371,9 @@ class Err(Generic[E]):
         if isinstance(self._value, BaseException):
             raise self._value
 
-        raise TypeError(
-            f"Called `Result.unwrap_or_raise_itself()` on non-exception value: {self._value}"
+        raise UnwrapError(
+            self,
+            f"Called `Result.unwrap_or_raise_itself()` on non-exception value: {self._value}",
         )
 
     def map(self, op: object) -> Err[E]:
