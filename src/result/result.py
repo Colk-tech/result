@@ -367,6 +367,8 @@ class Err(Generic[E]):
     def unwrap_or_raise_itself(self) -> NoReturn:
         """
         The contained result is ``Err``, so raise the error itself.
+
+        If the error is not an exception, this will raise an `UnwrapError`.
         """
         if isinstance(self._value, BaseException):
             raise self._value
