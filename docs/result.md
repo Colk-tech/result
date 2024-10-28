@@ -475,6 +475,19 @@ Return the value.
 
 ---
 
+<a href="https://github.com/rustedpy/result/blob/main/src/result/result.py#L143"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `unwrap_or_raise_itself`
+
+```python
+unwrap_or_raise_itself() → T
+```
+
+Return the value. 
+
+
+---
+
 <a href="https://github.com/rustedpy/result/blob/main/src/result/result.py#L221"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `DoException`
@@ -787,6 +800,21 @@ unwrap_or_raise(e: 'Type[TBE]') → NoReturn
 ```
 
 The contained result is ``Err``, so raise the exception with the value. 
+
+
+---
+
+<a href="https://github.com/rustedpy/result/blob/main/src/result/result.py#L355"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `unwrap_or_raise_itself`
+
+```python
+unwrap_or_raise_itself() → NoReturn
+```
+
+The contained result is ``Err``, so raise the error itself. 
+
+If the error is not an exception, this will raise an `UnwrapError`. 
 
 
 ---
